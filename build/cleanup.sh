@@ -91,3 +91,7 @@ rm -f /var/lib/systemd/random-seed
 
 echo "clear the history so our install isn't there"
 rm -f /root/.wget-hsts
+
+echo '==> Zeroing out empty area to save space in the final image'
+dd if=/dev/zero of=/EMPTY bs=1M
+rm -f /EMPTY
