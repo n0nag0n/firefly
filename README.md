@@ -5,17 +5,18 @@ vagrant box for PHP Developers with IonCube Integration for professional web dev
 Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add in Redis server.
 
 ## Quick Setup:
-1) Get the latest Versions of Vagrant and Virtual Box
+1. Get the latest Versions of Vagrant and Virtual Box
 
-2) clone the latest version and run vagrant up
-```bash
-git clone https://github.com/n0nag0n/firefly.git .
-vagrant up
-```
-
-3) open **192.168.56.11** in your browser (default PHP Version is 8.2)
-
-(IP can be changed in your Vagrantfile, the "public" directory is your document root)
+1. clone the latest version and run vagrant up
+	```bash
+	git clone https://github.com/n0nag0n/firefly.git .
+	cd firefly/
+	vagrant up
+	```
+1. open **192.168.56.11** in your browser (default PHP Version is 8.2) or if you've configured your `/etc/hosts` file (see below) then you can navigate to **http://firefly82.com/** and you'll be all set!
+   - (IP can be changed in your Vagrantfile, the "public" directory is your document root)
+1. You can put any project inside the `public/` directory and it will work as a "subfolder". For instance, if you have a Wordpress project in a folder named `amazing-blog/`, put that directory in `public/` and then navigate to `http://firefly82.com/amazing-blog/` and you'll see your project there!
+   - If you want to navigate to your own custom domain so it is on it's own domain such as `http://myproject.com/`, see the section on "Provisioning & custom hosts setup"
 
 ## Made for PHP professionals and E-Commerce developers
 ### Laravel 8 ready
