@@ -42,33 +42,28 @@ Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add
 - Ubuntu 20.04 LTS
 - VirtualBox Guest Additions
 - Apache 2.4 with HTTP/2
-- PHP 8.2 FPM
-- PHP 8.1 FPM
-- PHP 8.0 FPM
-- PHP 7.4 FPM
-- PHP 7.3 FPM
-- PHP 7.2 FPM
-- PHP 7.1 FPM
-- PHP 7.0 FPM
+- PHP 5.6-8.2 FPM
+   - Composer (2.5.4)
+      - Note: If you want to install a composer package against a specific php version, you can type something such as `php7.4 /usr/bin/composer require package/name`
+   - xdebug
+   - GD
+   - Imagick
+   - Mcrypt
+   - Memcached
+   - Redis
+   - IonCube Loader
+   - APCu
+   - Zend Guard Loader (PHP 5.6)
+   
 - MariaDB (10.5.19)
 - SQLite 3 (3.31.1)
 - Adminer (4.8.1)
-- Zend Guard Loader (PHP 5.6)
-- IonCube Loader
-- APCu
-- Redis PHP Ext
 - Redis Server (5.0.7)
-- Memcached
 - beanstalkd (with beanstalkd-cli available as well as at [http://firefly82.com/beanstalkd/](http://firefly82.com/beanstalkd/))
 - Vim
 - Git (2.25.1)
 - Mercurial (5.3.1)
-- xdebug 
 - cURL (7.68.0)
-- GD and Imagick
-- imagick-php
-- Composer 2.5.4
-- Mcrypt
 - increased disk size (128GB)
 
 ## MySQL/MariaDB Access
