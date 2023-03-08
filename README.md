@@ -1,18 +1,19 @@
-![alt tag](https://raw.githubusercontent.com/JarJarBernie/jimmybox/master/public/src/jimmybox.png)
-
-# jimmybox 3.2: web developer box with multiple PHP versions
+# firefly 1.0.0: web developer box with multiple PHP versions
 vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6.x, Wordpress, Typo3 or Laravel.
+
+### Forked from JarJarBernie/jimmybox
+Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add in Redis server.
 
 ## Quick Setup:
 1) Get the latest Versions of Vagrant and Virtual Box
 
 2) clone the latest version and run vagrant up
 ```bash
-git clone https://github.com/JarJarBernie/jimmybox.git .
+git clone https://github.com/n0nag0n/firefly.git .
 vagrant up
 ```
 
-3) open **192.168.33.11** in your browser (default PHP Version is 8.1)
+3) open **192.168.56.11** in your browser (default PHP Version is 8.1)
 
 (IP can be changed in your Vagrantfile, the "public" directory is your document root)
 
@@ -40,6 +41,7 @@ vagrant up
 - Ubuntu 20.04 LTS
 - VirtualBox Guest Additions
 - Apache 2.4 with HTTP/2
+- PHP 8.2 FPM
 - PHP 8.1 FPM
 - PHP 8.0 FPM
 - PHP 7.4 FPM
@@ -47,75 +49,87 @@ vagrant up
 - PHP 7.2 FPM
 - PHP 7.1 FPM
 - PHP 7.0 FPM
-- MySQL 5.7
+- MariaDB (10.5.19)
+- SQLite 3 (3.31.1)
+- Adminer (4.8.1)
 - Zend Guard Loader (PHP 5.6)
 - IonCube Loader
 - APCu
-- Redis
+- Redis PHP Ext
+- Redis Server (5.0.7)
 - Memcached
+- beanstalkd (with beanstalkd-cli available as well as at [http://firefly82.com/beanstalkd/](http://firefly82.com/beanstalkd/))
 - Vim
-- Git
-- cURL
+- Git (2.25.1)
+- Mercurial (5.3.1)
+- xdebug 
+- cURL (7.68.0)
 - GD and Imagick
 - imagick-php
-- Composer 2.2
+- Composer 2.5.4
 - Mcrypt
 - increased disk size (128GB)
 
-## MySQL Access
+## MySQL/MariaDB Access
 
 - Hostname: localhost or 127.0.0.1
 - Username: root
 - Password: root
+- Navigate to [http://firefly82.com/adminer.php](http://firefly82.com/adminer.php) to use [Adminer](https://adminer.org) to have a UI to your databases.
 
 ## Switching PHP-Versions:
 
-Jimmybox comes with preconfigured virtual hosts to use multiple PHP Versions from 5.6 to 8.1. Please just edit your local hosts file to use different PHP Versions.
+firefly comes with preconfigured virtual hosts to use multiple PHP Versions from 5.6 to 8.2. Please just edit your local hosts file (usually at `/etc/hosts`) to use different PHP Versions.
 
 #### Prepare your hosts file
 
 ```bash
+
+# PHP 8.2
+192.168.56.11  firefly82.com
+
 # PHP 8.1
-192.168.33.11  jimmy81.com
+192.168.56.11  firefly81.com
 
 # PHP 8.0
-192.168.33.11  jimmy80.com
+192.168.56.11  firefly80.com
 
 # PHP 7.4
-192.168.33.11  jimmy74.com
+192.168.56.11  firefly74.com
 
 # PHP 7.3
-192.168.33.11  jimmy73.com
+192.168.56.11  firefly73.com
 
 # PHP 7.2
-192.168.33.11  jimmy72.com
+192.168.56.11  firefly72.com
 
 # PHP 7.1
-192.168.33.11  jimmy71.com
+192.168.56.11  firefly71.com
 
 # PHP 7.0
-192.168.33.11  jimmy70.com
+192.168.56.11  firefly70.com
 
 # PHP 5.6
-192.168.33.11  jimmy56.com
+192.168.56.11  firefly56.com
 ```
 
-#### open Jimmybox in your browser
-- PHP 8.1: http://jimmy81.com
-- PHP 8.0: http://jimmy80.com
-- PHP 7.4: http://jimmy74.com
-- PHP 7.3: http://jimmy73.com
-- PHP 7.2: http://jimmy72.com
-- PHP 7.1: http://jimmy71.com
-- PHP 7.0: http://jimmy70.com
-- PHP 5.6: http://jimmy56.com
+#### open firefly in your browser
+- PHP 8.2: http://firefly82.com
+- PHP 8.1: http://firefly81.com
+- PHP 8.0: http://firefly80.com
+- PHP 7.4: http://firefly74.com
+- PHP 7.3: http://firefly73.com
+- PHP 7.2: http://firefly72.com
+- PHP 7.1: http://firefly71.com
+- PHP 7.0: http://firefly70.com
+- PHP 5.6: http://firefly56.com
 
 ## Provisioning & custom hosts setup
 You can use our provisioning template to setup your custom hosts.
 
-1. place your hosts.conf files in povisioning/hosts/ and edit them regarding to your needs
-2. open provisioning/setup/apache.sh and add code to enable/disable your custom hosts. This will ensure that your hosts only will be enabled if the directory exists.
-3. if needed, copy your SSL certs to provisioning/ssl/ and link it in your custom hosts config file
+1. place your `hosts.conf` files in `provisioning/hosts/` and edit them regarding to your needs
+2. open `provisioning/setup/apache.sh` and add code to enable/disable your custom hosts. This will ensure that your hosts only will be enabled if the directory exists.
+3. if needed, copy your SSL certs to `provisioning/ssl/` and link it in your custom hosts config file
 4. restart vagrant with the provisioning flag and your vhosts will get enabled if the vhosts dir exists.
 
 ````nashorn js
@@ -129,7 +143,8 @@ After that, you can simply uncomment the requested line and reload your apache c
 
 ```
 <FilesMatch \.php>
-        SetHandler "proxy:unix:/var/run/php/php8.1-fpm.sock|fcgi://localhost/"
+        SetHandler "proxy:unix:/var/run/php/php8.2-fpm.sock|fcgi://localhost/"
+		# SetHandler "proxy:unix:/var/run/php/php8.1-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
         # SetHandler "proxy:unix:/var/run/php/php7.3-fpm.sock|fcgi://localhost/"
@@ -142,9 +157,9 @@ After that, you can simply uncomment the requested line and reload your apache c
 
 ### Modify php.ini settings
 
-Since Jimmybox 3.2 you can manage the php.ini settings from within the provisioning folder:
+Since firefly 1.0.0 you can manage the php.ini settings from within the provisioning folder:
 
-- modify the php.ini files for php-fpm / php-cli in provisioning/php.ini/{php-version}/fpm/php.ini
+- modify the `php.ini` files for php-fpm / php-cli in `provisioning/php.ini/{php-version}/fpm/php.ini`
 - after this perform a vagrant reload --provision
 
 ````nashorn js
@@ -155,10 +170,11 @@ vagrant reload --provision
 
 # Upgrade
 
-### Upgrade from 3.x to 3.2
+Nothing to upgrade so far!
+<!-- ### Upgrade from 3.x to 3.2
 if you don't want to use ***vagrant box upgrade*** you can run ***vagrant reload --provision*** instead.
 This will run the commands in provisioning/setup/updates.sh and install the newest versions of
-- PHP 5.6 - PHP 8.1
+- PHP 5.6 - PHP 8.2
 - Composer
 
 ````bash
@@ -167,22 +183,22 @@ config.vm.provision "shell", path: "./provisioning/setup/updates.sh"
 ````
 
 ```bash
-# prepare (Jimmybox must me running)
+# prepare (firefly must me running)
 vagrant ssh
 wget https://repo.mysql.com/mysql-apt-config_0.8.22-1_all.deb
 sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
 sudo apt-get update
 sudo apt-get upgrade
 
-# if Jimmybox is running
+# if firefly is running
 vagrant reload --provision
 
-# if Jimmybox is not running
+# if firefly is not running
 vagrant up --provision
 ```
 
 ### Upgrade from older version
-Please do not use vagrant box update if you are using jimmybox < 3.0! Create a new version instead an migrate your data manually.
+Please do not use vagrant box update if you are using firefly < 3.0! Create a new version instead an migrate your data manually. -->
 
 ------
 
@@ -213,7 +229,7 @@ You can avoid this if you just use an absolute Path (/Volumes/...)
 config.vm.synced_folder "/Volumes/Macintosh HD/Users/your-user/Sites", "/var/www", type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1']
 ```
 
-## MySQL 5.7 strict SQL mode?
+## MariaDB 10.5 strict SQL mode?
 We have disabled the strict SQL mode for better compatibility with older apps. You can simply enable it doing this:
 
 ```bash
@@ -231,5 +247,5 @@ sudo apt-get remove php-apcu
 sudo service apache2 restart
 ```
 
-## ioncube loader for PHP 8.0 / PHP 8.1
+## ioncube loader for PHP 8.0 / 8.1 / 8.2
 by the date of the release the ioncube loader is not ready for PHP 8.0. We will implement this as soon if it's available.

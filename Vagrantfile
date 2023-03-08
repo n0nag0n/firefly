@@ -4,7 +4,8 @@
 Vagrant.configure("2") do |config|
 
     # BOX SETTINGS
-    config.vm.box = "sternpunkt/jimmybox"
+    config.vm.box = "n0nag0n/firefly"
+	config.vm.box_url = "file:///home/austin/projects/firefly/firefly.box"
 
       config.vm.provider "virtualbox" do |v|
           v.memory = 1024
@@ -14,10 +15,10 @@ Vagrant.configure("2") do |config|
     # NETWORKING
     ############################################################################
 
-    config.vm.hostname = "jimmy"
+    config.vm.hostname = "firefly"
 
     # Private Network
-    config.vm.network "private_network", ip: "192.168.33.11"
+    config.vm.network "private_network", ip: "192.168.56.11"
 
     # port forwarding must be enabled for vagrant share
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
@@ -41,7 +42,7 @@ Vagrant.configure("2") do |config|
 
     # NFS in MacOS 10.15 Catalina and higher:
     # due to a bug in Catalina you should use an absolute path to your directory:
-    # config.vm.synced_folder "/Volumes/Macintosh HD/Users/your-user/Vagrant/jimmybox/public", "/var/www", type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1']
+    # config.vm.synced_folder "/Volumes/Macintosh HD/Users/your-user/Vagrant/firefly/public", "/var/www", type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc' ,'actimeo=1']
 
     # RSYNC:
     # if you are using a framework that contains many files rsync can provide best performance

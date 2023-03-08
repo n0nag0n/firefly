@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------
 # Updates
 #
-# - upgrade manually from Jimmybox 3.x to 3.2 without breaking your Databases
+# - upgrade manually from firefly 3.x to 3.2 without breaking your Databases
 # - just keep it as it is or customize it to your needs and then run:
 # - vagrant reload --provision
 #

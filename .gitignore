@@ -1,4 +1,6 @@
 .vagrant
-jimmy.box
+firefly.box
+package.box
 vagrant
 issues
+.vscode/
