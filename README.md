@@ -13,7 +13,7 @@ git clone https://github.com/n0nag0n/firefly.git .
 vagrant up
 ```
 
-3) open **192.168.56.11** in your browser (default PHP Version is 8.1)
+3) open **192.168.56.11** in your browser (default PHP Version is 8.2)
 
 (IP can be changed in your Vagrantfile, the "public" directory is your document root)
 
