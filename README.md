@@ -45,16 +45,9 @@ Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add
 - PHP 5.6-8.2 FPM
    - Composer (2.5.4)
       - Note: If you want to install a composer package against a specific php version, you can type something such as `php7.4 /usr/bin/composer require package/name`
-   - xdebug
-   - GD
-   - Imagick
-   - Mcrypt
-   - Memcached
-   - Redis
+   - Enabled Extensions: xdebug, gd, igbinary, imagick, mcrypt, memcached, bcmath, xml/dom, simplexml, json, mysqlnd/pdo, opcache, intl, mbstring, redis, memcached, apcu.
    - IonCube Loader
-   - APCu
    - Zend Guard Loader (PHP 5.6)
-   
 - MariaDB (10.5.19)
 - SQLite 3 (3.31.1)
 - Adminer (4.8.1)
@@ -139,15 +132,15 @@ After that, you can simply uncomment the requested line and reload your apache c
 
 ```
 <FilesMatch \.php>
-        SetHandler "proxy:unix:/var/run/php/php8.2-fpm.sock|fcgi://localhost/"
-		# SetHandler "proxy:unix:/var/run/php/php8.1-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php7.3-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php7.2-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php7.1-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php7.0-fpm.sock|fcgi://localhost/"
-        # SetHandler "proxy:unix:/var/run/php/php5.6-fpm.sock|fcgi://localhost/"
+	SetHandler "proxy:unix:/var/run/php/php8.2-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php8.1-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php7.3-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php7.2-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php7.1-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php7.0-fpm.sock|fcgi://localhost/"
+	# SetHandler "proxy:unix:/var/run/php/php5.6-fpm.sock|fcgi://localhost/"
 </FilesMatch>
 ```
 
