@@ -238,3 +238,8 @@ sudo service apache2 restart
 
 ## ioncube loader for PHP 8.0 / 8.1 / 8.2
 by the date of the release the ioncube loader is not ready for PHP 8.0. We will implement this as soon if it's available.
+
+## Todos
+- Add Mailhog
+- Add supervisord
+- Add sendmail/postfix
