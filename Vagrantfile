@@ -5,7 +5,6 @@ Vagrant.configure("2") do |config|
 
     # BOX SETTINGS
     config.vm.box = "n0nag0n/firefly"
-	config.vm.box_url = "file:///home/austin/projects/firefly/firefly.box"
 
       config.vm.provider "virtualbox" do |v|
           v.memory = 1024
