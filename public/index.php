@@ -13,9 +13,6 @@
 <body class="bg-light">
 <div class="container bg-white p-3">
     <div class="starter-template mt-3">
-        <p class="row">
-            <img class="col-xs-12" src="src/firefly.png">
-        </p>
 
         <h1>Welcome to firefly 1.0.0!</h1>
         <p class="lead">firefly is a developer box where you can switch PHP versions easily.</p>
