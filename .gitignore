@@ -4,3 +4,4 @@ package.box
 vagrant
 issues
 .vscode/
+.DS_Store
