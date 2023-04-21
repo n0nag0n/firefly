@@ -14,7 +14,7 @@
 <div class="container bg-white p-3">
 	<div class="starter-template mt-3">
 
-		<h1>Welcome to Firefly 1.0.0!</h1>
+		<h1>Welcome to Firefly 1.0.1!</h1>
 		<p class="lead">Firefly is a developer box where you can switch PHP versions easily.</p>
 
 		<p class="fst-italic">Current PHP Version: <?=phpversion()?></p>
@@ -34,7 +34,7 @@
 		</p>
 
 		<h3>Database Access</h3>
-		<p>Database access via a UI is provided by <a href="https://adminer.org" target="_blank">Adminer</a>.</p>
+		<p>Database access via a UI is provided by <a href="https://adminer.org" target="_blank">Adminer</a>. Credentials are root/root.</p>
 
 		<p><a href="/adminer.php" target="_blank">Database Access</a></p>
 
