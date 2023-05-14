@@ -21,13 +21,22 @@ Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add
 ## Quick Setup Option 2:
 You can also install this quickly, but have a more limited ability to customize this (easily). 
 
-You can simply run `vagrant init n0nag0n/firefly` and it will install this VM locally. With that, you don't have access to any of the fireflyXX.com domains and you will be defaulted to use PHP 8.2. If you do this, in your new Vagrant file, you likely will have to do something similar to the following:
+You can simply run the following and it will install this VM locally:
+
+```bash
+vagrant init n0nag0n/firefly
+```
+
+With that, you don't have access to any of the fireflyXX.com domains and you will be defaulted to use PHP 8.2. If you do this, in your new Vagrant file, you likely will have to do something similar to the following:
 
 ```ruby
 
+# Sync the right folder into the vm with plenty of permissions (it's a dev environment, get over it)
+config.vm.synced_folder "./.", "/var/www/", mount_options: ["dmode=777,fmode=777"]
+
 # Change it to your correct document root for your project.
 config.vm.provision "shell", inline: <<-SHELL
-  sed -i 's#DocumentRoot /var/www/$#DocumentRoot /var/www/public/#g' /etc/apache2/sites-available/000-default.conf
+  sed -i 's#DocumentRoot /var/www$#DocumentRoot /var/www/public#g' /etc/apache2/sites-available/000-default.conf
 SHELL
 ```
 
