@@ -1,10 +1,10 @@
-# firefly 1.0.0: web developer box with multiple PHP versions
+# firefly 1.0.1: web developer box with multiple PHP versions
 vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6.x, Wordpress, Typo3 or Laravel.
 
 ### Forked from JarJarBernie/jimmybox
-Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add in Redis server.
+Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add in Redis and memcached services.
 
-## Quick Setup:
+## Quick Setup Option 1:
 1. Get the latest Versions of Vagrant and Virtual Box
 
 1. clone the latest version and run vagrant up
@@ -17,6 +17,28 @@ Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add
    - (IP can be changed in your Vagrantfile, the "public" directory is your document root)
 1. You can put any project inside the `public/` directory and it will work as a "subfolder". For instance, if you have a Wordpress project in a folder named `amazing-blog/`, put that directory in `public/` and then navigate to `http://firefly82.com/amazing-blog/` and you'll see your project there!
    - If you want to navigate to your own custom domain so it is on it's own domain such as `http://myproject.com/`, see the section on "Provisioning & custom hosts setup"
+
+## Quick Setup Option 2:
+You can also install this quickly, but have a more limited ability to customize this (easily). 
+
+You can simply run the following and it will install this VM locally:
+
+```bash
+vagrant init n0nag0n/firefly
+```
+
+With that, you don't have access to any of the fireflyXX.com domains and you will be defaulted to use PHP 8.2. If you do this, in your new Vagrant file, you likely will have to do something similar to the following:
+
+```ruby
+
+# Sync the right folder into the vm with plenty of permissions (it's a dev environment, get over it)
+config.vm.synced_folder "./.", "/var/www/", mount_options: ["dmode=777,fmode=777"]
+
+# Change it to your correct document root for your project.
+config.vm.provision "shell", inline: <<-SHELL
+  sed -i 's#DocumentRoot /var/www$#DocumentRoot /var/www/public#g' /etc/apache2/sites-available/000-default.conf
+SHELL
+```
 
 ## Made for PHP professionals and E-Commerce developers
 ### Laravel 8 ready
@@ -45,15 +67,16 @@ Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add
 - PHP 5.6-8.2 FPM
    - Composer (2.5.4)
       - Note: If you want to install a composer package against a specific php version, you can type something such as `php7.4 /usr/bin/composer require package/name`
-   - Enabled Extensions: xdebug, gd, igbinary, imagick, mcrypt, memcached, bcmath, xml/dom, simplexml, json, mysqlnd/pdo, opcache, intl, mbstring, redis, memcached, apcu.
+   - Enabled Extensions: xdebug, gd, igbinary, imagick, mcrypt, memcached, bcmath, xml/dom, simplexml, json, mysqlnd/pdo, opcache, intl, mbstring, redis, apcu.
    - IonCube Loader
    - Zend Guard Loader (PHP 5.6)
 - MariaDB (10.5.19)
 - SQLite 3 (3.31.1)
 - Adminer (4.8.1)
 - Redis Server (5.0.7)
+- Memcached (1.5.22)
 - beanstalkd (with beanstalkd-cli available as well as at [http://firefly82.com/beanstalkd/](http://firefly82.com/beanstalkd/))
-- Vim
+- Vim (8.1)
 - Git (2.25.1)
 - Mercurial (5.3.1)
 - cURL (7.68.0)
@@ -243,3 +266,4 @@ by the date of the release the ioncube loader is not ready for PHP 8.0. We will 
 - Add Mailhog
 - Add supervisord
 - Add sendmail/postfix
+- easier customizations with SSL
