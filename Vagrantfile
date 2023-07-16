@@ -71,4 +71,11 @@ Vagrant.configure("2") do |config|
 
     # php.ini files
     config.vm.provision "shell", path: "./provisioning/setup/php.sh"
+    
+    # Execute Mail Hog
+    #config.vm.provision "shell", path: "./provisioning/setup/mailhog.sh"
+
+    # Execute Elastic Search
+    #config.vm.provision "shell", path: "./provisioning/setup/elasticsearch.sh"
+     
 end
