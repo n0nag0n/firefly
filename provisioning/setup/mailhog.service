@@ -1,0 +1,8 @@
+[Unit]
+Description=MailHog for local
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/root/go/bin/MailHog
+[Install]
+WantedBy=multi-user.target
