@@ -34,11 +34,17 @@ With that, you don't have access to any of the fireflyXX.com domains and you wil
 # Sync the right folder into the vm with plenty of permissions (it's a dev environment, get over it)
 config.vm.synced_folder "./.", "/var/www/", mount_options: ["dmode=777,fmode=777"]
 
+# Forward the right port for localhost (choose whatever port you'd like)
+config.vm.network "forwarded_port", guest: 80, host: 8888
+
 # Change it to your correct document root for your project.
 config.vm.provision "shell", inline: <<-SHELL
   sed -i 's#DocumentRoot /var/www$#DocumentRoot /var/www/public#g' /etc/apache2/sites-available/000-default.conf
+  systemctl restart apache2
 SHELL
 ```
+
+**Note:** If you need a different version of PHP in the VM to serve your content for you, run `vagrant ssh` to hop in the VM and then run `sudo nano /etc/apache2/sites-available/000-default.conf` and if you scroll down, you can see different PHP modules that are commented out. Only leave one of them uncommented and then after you save the file, run `systemctl restart apache2` and you'll be on your way!
 
 ## Made for PHP professionals and E-Commerce developers
 ### Laravel 8 ready
