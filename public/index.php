@@ -14,7 +14,7 @@
 <div class="container bg-white p-3">
 	<div class="starter-template mt-3">
 
-		<h1>Welcome to Firefly 1.0.1!</h1>
+		<h1>Welcome to Firefly 1.0.2!</h1>
 		<p class="lead">Firefly is a developer box where you can switch PHP versions easily.</p>
 
 		<p class="fst-italic">Current PHP Version: <?=phpversion()?></p>
@@ -22,6 +22,7 @@
 		<h3>Preconfigured Hosts</h3>
 		<p>
 			please edit your local hosts file to use this! <br><br>
+			<strong>PHP 8.3: </strong><a href="http://firefly83.com">http://firefly83.com</a>: <a href="http://firefly83.com/info.php">info.php</a><br>
 			<strong>PHP 8.2: </strong><a href="http://firefly82.com">http://firefly82.com</a>: <a href="http://firefly82.com/info.php">info.php</a><br>
 			<strong>PHP 8.1: </strong><a href="http://firefly81.com">http://firefly81.com</a>: <a href="http://firefly81.com/info.php">info.php</a><br>
 			<strong>PHP 8.0: </strong><a href="http://firefly80.com">http://firefly80.com</a>: <a href="http://firefly80.com/info.php">info.php</a><br>

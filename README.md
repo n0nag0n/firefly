@@ -1,8 +1,8 @@
-# firefly 1.0.1: web developer box with multiple PHP versions
+# firefly 1.0.2: web developer box with multiple PHP versions
 vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6.x, Wordpress, Typo3 or Laravel.
 
 ### Forked from JarJarBernie/jimmybox
-Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add in Redis and memcached services.
+Added PHP8.3 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add in Redis and memcached services.
 
 ## Quick Setup Option 1:
 1. Get the latest Versions of Vagrant and Virtual Box
@@ -13,9 +13,9 @@ Added PHP8.2 and changed to MariaDB 10.5, added Adminer and beanstalkd. Also add
 	cd firefly/
 	vagrant up
 	```
-1. open **192.168.56.11** in your browser (default PHP Version is 8.2) or if you've configured your `/etc/hosts` file (see below) then you can navigate to **http://firefly82.com/** and you'll be all set!
+1. open **192.168.56.11** in your browser (default PHP Version is 8.2) or if you've configured your `/etc/hosts` file (see below) then you can navigate to **http://firefly83.com/** and you'll be all set!
    - (IP can be changed in your Vagrantfile, the "public" directory is your document root)
-1. You can put any project inside the `public/` directory and it will work as a "subfolder". For instance, if you have a Wordpress project in a folder named `amazing-blog/`, put that directory in `public/` and then navigate to `http://firefly82.com/amazing-blog/` and you'll see your project there!
+1. You can put any project inside the `public/` directory and it will work as a "subfolder". For instance, if you have a Wordpress project in a folder named `amazing-blog/`, put that directory in `public/` and then navigate to `http://firefly83.com/amazing-blog/` and you'll see your project there!
    - If you want to navigate to your own custom domain so it is on it's own domain such as `http://myproject.com/`, see the section on "Provisioning & custom hosts setup"
 
 ## Quick Setup Option 2:
@@ -81,7 +81,7 @@ SHELL
 - Adminer (4.8.1)
 - Redis Server (5.0.7)
 - Memcached (1.5.22)
-- beanstalkd (with beanstalkd-cli available as well as at [http://firefly82.com/beanstalkd/](http://firefly82.com/beanstalkd/))
+- beanstalkd (with beanstalkd-cli available as well as at [http://firefly83.com/beanstalkd/](http://firefly83.com/beanstalkd/))
 - Vim (8.1)
 - Git (2.25.1)
 - Mercurial (5.3.1)
@@ -93,7 +93,7 @@ SHELL
 - Hostname: localhost or 127.0.0.1
 - Username: root
 - Password: root
-- Navigate to [http://firefly82.com/adminer.php](http://firefly82.com/adminer.php) to use [Adminer](https://adminer.org) to have a UI to your databases.
+- Navigate to [http://firefly83.com/adminer.php](http://firefly83.com/adminer.php) to use [Adminer](https://adminer.org) to have a UI to your databases.
 
 ## Switching PHP-Versions:
 
@@ -102,6 +102,9 @@ firefly comes with preconfigured virtual hosts to use multiple PHP Versions from
 #### Prepare your hosts file
 
 ```bash
+
+# PHP 8.3
+192.168.56.11  firefly83.com
 
 # PHP 8.2
 192.168.56.11  firefly82.com
@@ -132,6 +135,7 @@ firefly comes with preconfigured virtual hosts to use multiple PHP Versions from
 ```
 
 #### open firefly in your browser
+- PHP 8.3: http://firefly83.com
 - PHP 8.2: http://firefly82.com
 - PHP 8.1: http://firefly81.com
 - PHP 8.0: http://firefly80.com
@@ -269,7 +273,7 @@ sudo service apache2 restart
 by the date of the release the ioncube loader is not ready for PHP 8.0. We will implement this as soon if it's available.
 
 ## Todos
-- Add Mailhog
+- Add Mailhog Thanks @Lawrence72 - run `vagrant ssh -c "/vagrant/provisioning/setup/mailhog.sh" to enable`
 - Add supervisord
 - Add sendmail/postfix
 - easier customizations with SSL

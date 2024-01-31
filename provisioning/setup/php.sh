@@ -76,5 +76,13 @@ if [ -d "/etc/php/8.2/" ]; then
   sudo /etc/init.d/php8.2-fpm restart
 fi
 
+# PHP 8.3
+# -------------------
+if [ -d "/etc/php/8.3/" ]; then
+  sudo cp /usr/local/vagrant/php.ini/8.3/fpm/php.ini /etc/php/8.3/fpm/
+  sudo cp /usr/local/vagrant/php.ini/8.3/cli/php.ini /etc/php/8.3/cli/
+  sudo /etc/init.d/php8.3-fpm restart
+fi
+
 # reload apache
 sudo service apache2 restart
