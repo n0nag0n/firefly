@@ -22,6 +22,10 @@
 sudo apt-get update
 sudo apt-get upgrade -Y
 
+# php 8.4
+apt install -y php8.4 php8.4-{fpm,cli,redis,mcrypt,mbstring,soap,intl,zip,xml,gd,opcache,apcu,mysql,curl,bcmath,imagick,imap,memcached,xdebug,imagick,igbinary,msgpack,common,sqlite3}
+
+
 # PHP 8.1
 sudo apt-get install -y php8.1 php8.1-fpm php8.1-cli php8.1-redis php8.1-mcrypt php8.1-mbstring php8.1-soap php8.1-intl php8.1-zip php8.1-xml php8.1-gd php8.1-opcache php8.1-apcu php8.1-mysql php8.1-curl php8.1-bcmath php8.1-imagick php8.1-imap
 
