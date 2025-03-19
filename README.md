@@ -1,4 +1,4 @@
-# firefly 1.0.2: web developer box with multiple PHP versions
+# firefly 1.0.3: web developer box with multiple PHP versions
 vagrant box for PHP Developers with IonCube Integration for professional web development. Works with Shopware and many other applications and frameworks such as Magento, Oxid 6.x, Wordpress, Typo3 or Laravel.
 
 ### Forked from JarJarBernie/jimmybox
